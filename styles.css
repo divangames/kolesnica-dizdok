@@ -153,3 +153,75 @@ tr.implemented td:first-child { color: var(--green); }tr.implemented td:last-chi
   .intro, .section, .dialogue-hero, .dialogue-section { padding: 24px 0; }
   .table-wrap { overflow: visible; }table { min-width: 0; }.cast-grid, .dialogue-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
+
+/* Character dossiers: a consistent tile opens a native, keyboard-accessible modal. */
+.cast-grid { align-items: stretch; }
+.character-card { padding: 0; height: 440px; }
+.character-trigger { display: grid; grid-template-rows: 24px minmax(0,1fr) 64px 28px 28px; gap: 8px; width: 100%; height: 100%; min-width: 0; padding: 20px; color: var(--text); border-radius: 4px; transition: background-color 150ms ease, transform 120ms cubic-bezier(.23,1,.32,1); }
+.character-trigger:active { transform: scale(.98); }
+.character-trigger:focus-visible { outline-offset: -5px; }
+.character-trigger .person-num { color: var(--muted); font-size: 12px; }
+.character-trigger .character-portrait { background: none; height: 100%; width: 100%; aspect-ratio: auto; margin: 0; object-fit: contain; border-radius: 0; }
+.character-trigger h3 { margin: 0; font-size: 28px; line-height: 1.1; align-self: center; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.character-card-faction { color: var(--muted); font-size: 14px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.character-card-action { display: flex; align-items: center; justify-content: space-between; color: var(--yellow); font-size: 14px; border-top: 1px solid var(--line); padding-top: 6px; }
+.character-card-action > span { font-size: 20px; }
+html.biography-open { overflow: hidden; }
+.biography-dialog:not([open]) { display: none; }
+.biography-dialog { width: min(1000px,calc(100vw - 32px)); height: min(920px,calc(100dvh - 32px)); max-width: none; max-height: none; padding: 0; margin: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--text); box-shadow: 0 24px 100px #0008; overflow: hidden; }
+.biography-dialog::backdrop { background: #000b; }
+.biography-dialog-shell { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.biography-dialog-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 28px; flex: 0 0 auto; border-bottom: 1px solid var(--line); background: var(--panel); }
+.biography-dialog-header > div { min-width: 0; }
+.biography-dialog-header h2 { margin: 6px 0 0; font-size: clamp(24px,4vw,36px); line-height: 1.15; }
+.biography-close { display: grid; place-items: center; flex: 0 0 48px; width: 48px; height: 48px; padding: 0; border: 1px solid var(--line); border-radius: 5px; background: var(--bg); color: var(--text); font: 32px/1 Bender,sans-serif; cursor: pointer; }
+.biography-close:active { background: var(--panel-2); }
+.biography-close:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+.biography-scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 28px; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+.biography-scroll h3 { font-size: 23px; line-height: 1.3; margin: 0 0 18px; }
+.biography-profile { display: grid; grid-template-columns: 240px minmax(0,1fr); gap: 32px; align-items: center; margin-bottom: 32px; }
+.biography-portrait { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: none; }
+.biography-full-name { font-size: 24px; line-height: 1.3; margin: 0 0 16px; }
+.biography-facts { margin: 0 0 24px; }
+.biography-facts > div { display: grid; grid-template-columns: minmax(100px,.65fr) minmax(0,1fr); gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.biography-facts dt, .car-metrics dt { color: var(--muted); font-size: 14px; }
+.biography-facts dd { margin: 0; font-size: 16px; overflow-wrap: anywhere; }
+.pilot-metrics { display: grid; gap: 10px; }
+.pilot-metrics > div { display: grid; grid-template-columns: 90px minmax(0,1fr) 34px; gap: 12px; align-items: center; font-size: 14px; }
+.pilot-metrics meter { width: 100%; height: 12px; border: 0; border-radius: 2px; }
+.pilot-metrics meter::-webkit-meter-bar { border: 0; border-radius: 2px; background: var(--panel-2); }
+.pilot-metrics meter::-webkit-meter-optimum-value { background: var(--yellow); }
+.pilot-metrics b { color: var(--yellow); font-variant-numeric: tabular-nums; }
+.biography-car, .biography-story, .biography-secret, .biography-voice { border-top: 1px solid var(--line); padding-top: 28px; margin-top: 28px; }
+.biography-section-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.biography-section-heading h3 { margin: 0; }.biography-section-heading span { color: var(--muted); font-size: 13px; }
+.car-name { color: var(--yellow); font-size: 28px; line-height: 1.25; margin: 12px 0 16px; }
+.biography-car-image { display: block; width: 100%; height: auto; max-height: 340px; object-fit: contain; margin: 24px 0; background: none; }
+.car-metrics { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin: 24px 0; }
+.car-metrics > div { min-width: 0; padding: 14px; border: 1px solid var(--line); border-radius: 4px; background: var(--panel); }
+.car-metrics dd { margin: 8px 0 0; color: var(--yellow); font-size: 28px; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.car-traits { margin: 0; padding-left: 20px; color: #bdc7ce; }.car-traits li { padding: 6px 0; }
+.biography-story h3:not(:first-child), .biography-story h4 { font-size: 20px; color: var(--yellow); margin: 28px 0 12px; line-height: 1.4; }
+.biography-story p, .biography-secret p, .biography-voice p { font-size: 17px; line-height: 1.7; color: #c4cdd3; margin-bottom: 18px; }
+.biography-story li { margin-bottom: 8px; }
+.biography-story code { font: inherit; color: var(--yellow); }
+.biography-scroll > section:last-child { padding-bottom: 12px; }
+@media (hover:hover) and (pointer:fine) {
+  .character-trigger:hover { background: var(--panel-2); }
+  .biography-close:hover { border-color: var(--yellow); }
+}
+@media (max-width:600px) {
+  .character-card { padding: 0; height: 430px; }
+  .biography-dialog { width: calc(100vw - 16px); height: calc(100dvh - 16px); border-radius: 8px; }
+  .biography-dialog-header { padding: 16px; gap: 12px; }
+  .biography-scroll { padding: 20px 16px; }
+  .biography-profile { grid-template-columns: minmax(0,1fr); gap: 20px; }
+  .biography-portrait { width: 200px; max-width: 100%; justify-self: center; }
+  .car-metrics { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .biography-facts > div { grid-template-columns: minmax(90px,.65fr) minmax(0,1fr); gap: 12px; }
+  .biography-story p, .biography-secret p, .biography-voice p { font-size: 16px; }
+}
+@media print {
+  .biography-dialog[open] { position: static; width: 100%; height: auto; overflow: visible; }
+  .biography-scroll { overflow: visible; }.biography-close { display: none; }
+}
